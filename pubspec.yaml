@@ -1,0 +1,5 @@
+name: panel_snap
+description: A sample web application
+dependencies:
+  browser: any
+  animation: any
