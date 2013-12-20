@@ -1,0 +1,124 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100);
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  color: #ffffff;
+  font-family: 'Lato';
+  font-weight: 100;
+  font-size: 32px;
+}
+
+h1 {
+  font-weight: inherit;
+  text-transform: uppercase;
+  font-size: 250%;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  max-width: 800px;
+}
+
+p.small,
+pre {
+  font-size: 70%;
+}
+
+#pnls {
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+  padding: 50px;
+  width: 100%;
+  height: 100%;
+  background: #00A7E1;
+}
+
+section:nth-child(2n) {
+  background: #0076BE;
+}
+
+section section {
+  background: #48C1BB;
+}
+
+section section:nth-child(2n) {
+  background: #00B4AA;
+}
+
+section pre {
+  background: #0076BE;
+}
+
+section:nth-child(2n) pre {
+  background: #00A7E1;
+}
+
+.panels,
+.log,
+.menu,
+pre {
+  position: absolute;
+  top: 200px;
+  bottom: 50px;
+  right: 50px;
+  left: 400px;
+  overflow: scroll;
+}
+
+.log,
+.menu {
+  right: auto;
+  left: 50px;
+  width: 300px;
+}
+
+pre {
+  left: 50px;
+  padding: 50px;
+}
+
+.menu a {
+  display: block;
+  width: 100%;
+  padding: 25px;
+  background: #48C1BB;
+  text-decoration: none;
+  margin: 0 0 25px 0;
+}
+
+.menu a.active,
+.menu a:active,
+.menu a:hover {
+  background: #00B4AA;
+}
+
+@media screen and (max-width: 1000px) {
+  .panels,
+  .log,
+  .menu {
+    top: 300px;
+  }
+}
