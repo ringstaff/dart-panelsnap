@@ -1,6 +1,8 @@
 # dart.panelsnap
 A Google Dart plugin that provides snapping functionality to a set of panels within your interface.
 
+Dart.panelsnap is a port of jQuery.panelSnap by Guido Bouman (http://github.com/guidobouman/jquery-panelsnap).
+
 # Demo
 Check out the homepage at http://ringstaff.github.io/dart-panelsnap or the demos folder for a working demo that explains most of the features present in the plugin.
 
@@ -89,7 +91,7 @@ The amount of milliseconds in which panelsnap snaps to the desired panel.
         <a href="/third" data-panel="third">Third</a>
       </div>
     </header>
-    <div class="panel_container">
+    <div class="panels">
       <section data-panel="first">
         ...
       </section>
