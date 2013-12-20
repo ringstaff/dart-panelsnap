@@ -102,7 +102,7 @@ $$.BoundClosure$2 = [P, {"": "BoundClosure;_self,__js_helper$_target,_receiver,_
   $is_args1: true
 }];
 
-$$.BoundClosure$10 = [R, {"": "BoundClosure;_self,__js_helper$_target,_receiver,__js_helper$_name",
+$$.BoundClosure$10 = [A, {"": "BoundClosure;_self,__js_helper$_target,_receiver,__js_helper$_name",
   call$1: function(p0) {
     return this.__js_helper$_target.call(this._self, p0);
   },
@@ -8845,9 +8845,9 @@ TypedData_ListMixin_FixedLengthListMixin: {"": "TypedData_ListMixin+FixedLengthL
 ["", "demo.dart", , N, {
 main: function() {
   var t1, eventDemoPanels, t2, t3;
-  R.PanelSnap$(document.body, null);
-  R.PanelSnap$(document.querySelector(".menu_demo .panels"), null).set$menu(document.querySelector(".menu_demo .menu"));
-  t1 = R.PanelSnap$(document.querySelector(".callback_demo .panels"), null);
+  A.PanelSnap$(document.body, null);
+  A.PanelSnap$(document.querySelector(".menu_demo .panels"), null).set$menu(document.querySelector(".menu_demo .menu"));
+  t1 = A.PanelSnap$(document.querySelector(".callback_demo .panels"), null);
   t1.onSnapStart = new N.main_closure();
   t1.onSnapFinish = new N.main_closure0();
   eventDemoPanels = document.querySelector(".event_demo .panels");
@@ -8862,7 +8862,7 @@ main: function() {
   t3 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new N.main_closure2()), t1._useCapture);
   H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(t1, "_EventStream", 0)]);
   t3._tryResume$0();
-  R.PanelSnap$(eventDemoPanels, null);
+  A.PanelSnap$(eventDemoPanels, null);
 },
 
 log: function(type, action, target) {
@@ -9249,7 +9249,7 @@ FilteredElementList_removeRange_closure: {"": "Closure;",
   $isFunction: true,
   $is_args1: true
 }}],
-["panel_snap", "panel_snap.dart", , R, {
+["panelsnap", "package:panel_snap/panelsnap.dart", , A, {
 PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,directionThreshold,slideSpeed,container,eventContainer,snapContainer,_menu,menuSelector,panelSelector,namespace,onSnapStart,onSnapFinish,onActivate,tempListener,listeners,panels,snapContainerAnimation,containerAnimation",
   onSnapStart$1: function(arg0) {
     return this.onSnapStart.call$1(arg0);
@@ -9269,7 +9269,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
     t2 = J.getInterceptor$x(t1);
     if (typeof t1 === "object" && t1 !== null && !!t2.$isElement) {
       t1 = t2.get$children(t1);
-      t1.forEach$1(t1, new R.PanelSnap_menu_closure(this));
+      t1.forEach$1(t1, new A.PanelSnap_menu_closure(this));
     }
   },
   bind$0: function() {
@@ -9280,7 +9280,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
     t1.toString;
     if (t1 == null ? t2 == null : t1 === t2) {
       t1 = C._CustomEventStreamProvider__determineMouseWheelEventType.forElement$1(t1);
-      t2 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new R.PanelSnap_bind_closure(this)), t1._useCapture);
+      t2 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new A.PanelSnap_bind_closure(this)), t1._useCapture);
       H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(t1, "_EventStream", 0)]);
       t2._tryResume$0();
       t3.push(t2);
@@ -9405,26 +9405,26 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
       this.snapToPanel$1(target);
   },
   get$scrollStop: function() {
-    return new R.BoundClosure$10(this, R.PanelSnap.prototype.scrollStop$1, null, "scrollStop$1");
+    return new A.BoundClosure$10(this, A.PanelSnap.prototype.scrollStop$1, null, "scrollStop$1");
   },
   mouseDown$1: function(e) {
     this.isMouseDown = true;
   },
   get$mouseDown: function() {
-    return new H.BoundClosure$1(this, R.PanelSnap.prototype.mouseDown$1, null, "mouseDown$1");
+    return new H.BoundClosure$1(this, A.PanelSnap.prototype.mouseDown$1, null, "mouseDown$1");
   },
   mouseUp$1: function(e) {
     this.isMouseDown = false;
   },
   get$mouseUp: function() {
-    return new H.BoundClosure$1(this, R.PanelSnap.prototype.mouseUp$1, null, "mouseUp$1");
+    return new H.BoundClosure$1(this, A.PanelSnap.prototype.mouseUp$1, null, "mouseUp$1");
   },
   resize$1: function(_, e) {
     this.scrollInterval = this.container.clientHeight;
     this.snapToPanel$1(this.getPanel$1(".active"));
   },
   get$resize: function(_receiver) {
-    return new P.BoundClosure$i1(this, R.PanelSnap.prototype.resize$1, _receiver, "resize$1");
+    return new P.BoundClosure$i1(this, A.PanelSnap.prototype.resize$1, _receiver, "resize$1");
   },
   captureMenuClick$1: function(e) {
     var t1;
@@ -9436,7 +9436,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
     return false;
   },
   get$captureMenuClick: function() {
-    return new H.BoundClosure$1(this, R.PanelSnap.prototype.captureMenuClick$1, null, "captureMenuClick$1");
+    return new H.BoundClosure$1(this, A.PanelSnap.prototype.captureMenuClick$1, null, "captureMenuClick$1");
   },
   snapToPanel$1: function(target) {
     var t1, t2, scrollTarget, t3;
@@ -9458,7 +9458,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
     t2 = t1._onCompleteController;
     t3 = new P._BroadcastStream(t2);
     H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(t2, "_BroadcastStreamController", 0)]);
-    t3.listen$1(new R.PanelSnap_snapToPanel_closure(this, target, scrollTarget));
+    t3.listen$1(new A.PanelSnap_snapToPanel_closure(this, target, scrollTarget));
     t1.run$0();
     this.snapContainerAnimation = t1;
     this.activatePanel$1(target);
@@ -9502,7 +9502,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
     this.panels = P.List_List$from(J.get$children$x(t1), true, null);
     t2 = document.body;
     if (t1 == null ? t2 == null : t1 === t2)
-      C.JSArray_methods.retainWhere$1(this.panels, new R.PanelSnap_closure());
+      C.JSArray_methods.retainWhere$1(this.panels, new A.PanelSnap_closure());
     this.scrollInterval = t1.clientHeight;
     this.bind$0();
     t1 = this._menu;
@@ -9519,7 +9519,7 @@ PanelSnap: {"": "Object;isMouseDown,isSnapping,scrollInterval,scrollOffset,direc
   },
   static: {
 PanelSnap$: function(container, menu) {
-  var t1 = new R.PanelSnap(false, false, 0, 0, 50, 400, container, null, null, false, "a", "section", ".panelSnap", null, null, null, null, [], [], null, null);
+  var t1 = new A.PanelSnap(false, false, 0, 0, 50, 400, container, null, null, false, "a", "section", ".panelSnap", null, null, null, null, [], [], null, null);
   t1.PanelSnap$2(container, menu);
   return t1;
 }}
@@ -9545,7 +9545,7 @@ PanelSnap_menu_closure: {"": "Closure;this_0",
 
 PanelSnap_bind_closure: {"": "Closure;this_0",
   call$1: function(e) {
-    return P.Timer_Timer(P.Duration$(0, 0, 0, 50, 0, 0), this.this_0.get$scrollStop());
+    return P.Timer_Timer(P.Duration$(0, 0, 0, 100, 0, 0), this.this_0.get$scrollStop());
   },
   $isFunction: true,
   $is_args1: true
