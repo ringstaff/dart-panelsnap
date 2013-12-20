@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'panel_snap.dart';
+import 'package:panel_snap/panelsnap.dart';
 
 
 
@@ -23,17 +23,6 @@ main() {
       ..on['panelsnap:finish'].listen((e) => log('event', e.type, e.detail));
   
   new PanelSnap(eventDemoPanels);
-  
-  new PanelSnap(querySelector('.panel_container'))
-      ..menu = false
-      ..menuSelector = 'a'
-      ..panelSelector = 'section'
-      ..namespace = '.panelSnap'
-      ..onSnapStart = () {}
-      ..onSnapFinish = () {}
-      ..onActivate = () {}
-      ..directionThreshold = 50
-      ..slideSpeed = 400;
 }
 
 // Shared log function
