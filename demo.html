@@ -4,13 +4,12 @@
     <title>dart.panelSnap Plugin</title>
 
     <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="stylesheet" href="demo2.css">
+    <link rel="stylesheet" href="demo.css">
     <style>
 
     </style>
   </head>
   <body>
-  <!--div id="pnls"-->
     <section class="introduction" data-panel="first">
       <h1>
         Dart.panelSnap
@@ -22,7 +21,7 @@
         Each following panel will explain a specific feature of PanelSnap.
       </p>
       <p>
-        <a href="http://github.com/ringstaff/dart-panelsnap">http://github.com/guidobouman/jquery-panelsnap</a>
+        <a href="http://github.com/ringstaff/dart-panelsnap">http://github.com/ringstaff/dart-panelsnap</a>
       </p>
       <p>
         Ported from Guido Bouman's <a href="http://github.com/guidobouman/jquery-panelsnap">JQUERY.PANELSNAP</a>
@@ -36,14 +35,8 @@
       <h1>
         The basic setup
       </h1>
-      <pre>&lt;html&gt;
-  &lt;head&gt;
-    &lt;script src="jquery.js"&gt;&lt;/script&gt;
-    &lt;script src="jquery.panelSnap.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-      new PanelSnap(document.body);
-    &lt;/script&gt;
-  &lt;/head&gt;
+<pre>
+&lt;html&gt;
   &lt;body&gt;
     &lt;section&gt;
       ...
@@ -54,27 +47,41 @@
     &lt;section&gt;
       ...
     &lt;/section&gt;
+    &lt;script type="application/dart"&gt;
+    
+      import 'dart:html';
+      import 'package:panel_snap/panel_snap.dart';
+      
+      void main() {
+        new PanelSnap(document.body);
+      }
+      
+    &lt;/script&gt;
+    &lt;script src="packages/browser/dart.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
-&lt;/html&gt;</pre>
+&lt;/html&gt;
+</pre>
+
+
     </section>
 
     <section class="configuration" data-panel="third">
       <h1>
         Configuration options
       </h1>
-      <pre>&lt;script&gt;
-  new PanelSnap(querySelector('.panel_container'))
-      ..menu = false
-      ..menuSelector = 'a'
-      ..panelSelector = 'section'
-      ..namespace = '.panelSnap'
-      ..onSnapStart = () {}
-      ..onSnapFinish = () {}
-      ..onActivate = () {}
-      ..directionThreshold = 50
-      ..slideSpeed = 400;
+      <pre>
+new PanelSnap(querySelector('.panel_container'))
+    ..menu = false
+    ..menuSelector = 'a'
+    ..panelSelector = 'section'
+    ..namespace = '.panelSnap'
+    ..onSnapStart = () {}
+    ..onSnapFinish = () {}
+    ..onActivate = () {}
+    ..directionThreshold = 50
+    ..slideSpeed = 400;
       
-&lt;/script&gt;</pre>
+      </pre>
     </section>
 
     <section class="menu_demo" data-panel="fourth">
@@ -129,7 +136,7 @@
       <h1>
         Event capturing
       </h1>
-      <div class="panels">
+      <div class="panels" id="panelsssss">
         <section id="1">
           <h1>First</h1>
         </section>
@@ -144,10 +151,7 @@
         <h2>Log:</h2>
       </div>
     </section>
-
-  <!--/div-->
-
   </body>
-    <script src="demo.dart.js"></script>
-    <script src="dart.js"></script>
+  <script src="demo.dart.js"></script>
+  <script src="dart.js"></script>
 </html>
