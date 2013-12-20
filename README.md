@@ -1,4 +1,4 @@
-# dart.panel_snap [![Build Status](https://travis-ci.org/ringstaff/dart-panelsnap.png)](https://travis-ci.org/ringstaff/dart-panelsnap)
+# dart.panelsnap [![Build Status](https://travis-ci.org/ringstaff/dart-panelsnap.png)](https://travis-ci.org/ringstaff/dart-panelsnap)
 A Google Dart plugin that provides snapping functionality to a set of panels within your interface.
 
 # Demo
@@ -23,7 +23,7 @@ The most basic setup will bind to body and snap all sections.
 	<script type="application/dart">
 	
 		import 'dart:html';
-		import 'package:panel_snap/panel_snap.dart';
+		import 'package:panelsnap/panelsnap.dart';
       
 		void main() {
 			new PanelSnap(document.body);
@@ -72,20 +72,15 @@ A callback function that is being fired after a panel was snapped.
 A callback function that is being fired after a panel was activated. (This callback will ALWAYS fire, where onSnapStart & onStapFinish only fire before and after the plugin is actually snapping (animating) towards a panel.)
 
 `directionThreshold`:
-An integer specifying the amount of pixels required to scroll before panel_snap detects a direction and snaps to the next panel.
+An integer specifying the amount of pixels required to scroll before panelsnap detects a direction and snaps to the next panel.
 
 `slideSpeed`:
-The amount of milliseconds in which panel_snap snaps to the desired panel.
+The amount of milliseconds in which panelsnap snaps to the desired panel.
 
 ## Attaching a menu
 
 ```html
 <html>
-  <head>
-    <script src="/path/to/jquery.js"></script>
-    <script src="/path/to/jquery.panelSnap.js"></script>
-
-  </head>
   <body>
     <header>
       <div class="menu">
@@ -107,7 +102,7 @@ The amount of milliseconds in which panel_snap snaps to the desired panel.
     </div>
 	<script type="application/dart">
         import 'dart:html';
-        import 'package:panel_snap/panel_snap.dart';
+        import 'package:panelsnap/panelsnap.dart';
 		
 		main() {
 			new PanelSnap(querySelector('.menu_demo .panels'))
@@ -118,10 +113,10 @@ The amount of milliseconds in which panel_snap snaps to the desired panel.
   </body>
 ```
 
-Note the `data-panel` attributes on the links and the panels. This way panel_snap knows which link matches to which panel.
+Note the `data-panel` attributes on the links and the panels. This way panelsnap knows which link matches to which panel.
 
 # Events
-Panel_snap emits the following events on the container object in the `panelsnap` namespace:
+panelsnap emits the following events on the container object in the `panelsnap` namespace:
 
 `panelsnap:start`:
 Fired before a panel is being snapped.
