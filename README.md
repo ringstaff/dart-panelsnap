@@ -1,4 +1,4 @@
-# dart.panelsnap [![Build Status](https://travis-ci.org/ringstaff/dart-panelsnap.png)](https://travis-ci.org/ringstaff/dart-panelsnap)
+# dart.panelsnap
 A Google Dart plugin that provides snapping functionality to a set of panels within your interface.
 
 # Demo
