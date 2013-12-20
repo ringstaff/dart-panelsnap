@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:panel_snap/panelsnap.dart';
+import 'package:panelsnap/panelsnap.dart';
 
 
 

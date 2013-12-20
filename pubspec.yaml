@@ -1,5 +1,8 @@
-name: panel_snap
-description: A sample web application
+name: panelsnap
+version: 0.0.1
+author: Travis Ringstaff <travisringstaff@gmail.com>
+description: A Dart app which snaps to blocks of content (panels) when the user scrolls.
+homepage: https://github.com/ringstaff/dart-panelsnap
 dependencies:
-  browser: any
   animation: any
+  browser: any
