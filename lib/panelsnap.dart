@@ -6,27 +6,26 @@
  * Copyright 2013, Travis Ringstaff
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the <organization> nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
  * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 1. Redistributions of source code must retain the above copyright notice, 
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice, 
+ *    this list of conditions and the following disclaimer in the documentation 
+ *    and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS 
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+ * THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Date: Thurs Dec 19 16:08:00 2013 -0500
  */
@@ -48,19 +47,23 @@ class PanelSnap {
       directionThreshold = 50, 
       slideSpeed = 400;
   
+  var eventContainer;
+  
   Element container, 
-          eventContainer, 
           snapContainer;
   
+  // false for no menu or Element for menu
   var _menu = false;
   
   String menuSelector = 'a', 
          panelSelector = 'section', 
          namespace = '.panelSnap';
 
+  // optional callbacks
   var onSnapStart, onSnapFinish, onActivate;
   
-  StreamSubscription tempListener;
+  
+  StreamSubscription tempOnMouseUpListener;
   
   List listeners = [], 
        panels = [];
@@ -71,7 +74,6 @@ class PanelSnap {
   PanelSnap(this.container, [var menu]) {
     if(container == null) {
       throw new Exception('Container is null.');
-      return;
     }
     
     eventContainer = snapContainer = container;
@@ -81,6 +83,9 @@ class PanelSnap {
     if(container == document.body) {
       // remove ScriptElements from panels list
       panels.retainWhere((Element e) => e is! ScriptElement);
+
+      // body doesn't have onScroll, must use window
+      eventContainer = window;
     }
     
     scrollInterval = container.clientHeight;
@@ -101,7 +106,6 @@ class PanelSnap {
   set menu(menu) {
     if(menu == null) {
       throw new Exception('Menu element is null.');
-      return;
     }
     _menu = menu;
     if(_menu is Element)
@@ -113,14 +117,11 @@ class PanelSnap {
   }
 
   bind() {
-    if(eventContainer == document.body)
-      listeners.add(eventContainer.onMouseWheel.listen((e) => new Timer(new Duration(milliseconds: 100), scrollStop)));
-    else
-      listeners.add(eventContainer.onScroll.listen(scrollStop));
-    
-    listeners.add(eventContainer.onMouseDown.listen(mouseDown));
-    listeners.add(eventContainer.onMouseUp.listen(mouseUp));
-    listeners.add(window.onResize.listen(resize));
+    listeners
+    ..add(eventContainer.onScroll.listen(scrollStop))
+    ..add(eventContainer.onMouseDown.listen(mouseDown))
+    ..add(eventContainer.onMouseUp.listen(mouseUp))
+    ..add(window.onResize.listen(resize));
   }
 
   destroy() {
@@ -129,13 +130,15 @@ class PanelSnap {
   }
 
   scrollStop([Event e]) {
-    if(tempListener != null) {
-      tempListener.cancel();
-      tempListener = null;
+    e.stopPropagation();
+    
+    if(tempOnMouseUpListener != null) {
+      tempOnMouseUpListener.cancel();
+      tempOnMouseUpListener = null;
     }
     
     if(isMouseDown) {
-      tempListener = eventContainer.onMouseUp.listen(scrollStop);
+      tempOnMouseUpListener = eventContainer.onMouseUp.listen(scrollStop);
       return;
     }
 
@@ -143,13 +146,12 @@ class PanelSnap {
       return;
     }
 
-    var offset = eventContainer.scrollTop;
-    
-    var scrollDifference = offset - scrollOffset;
-    var maxOffset = container.scrollHeight - scrollInterval;
-    var panelCount = container.children.length;
+    int offset = container.scrollTop,
+        scrollDifference = offset - scrollOffset,
+        maxOffset = container.scrollHeight - scrollInterval,
+        panelCount = container.children.length;
 
-    var childNumber;
+    int childNumber;
     if(scrollDifference < -directionThreshold && scrollDifference > -scrollInterval) {
       childNumber = (offset / scrollInterval).floor();
     } else if(scrollDifference > directionThreshold && scrollDifference < scrollInterval) {
@@ -162,7 +164,7 @@ class PanelSnap {
     if(childNumber >= panels.length)
       return;
     
-    var target = panels[childNumber];
+    Element target = panels[childNumber];
     
     if((scrollDifference == 0) || (scrollDifference < 100 && (offset < 0 || offset > maxOffset))) {
       activatePanel(target);
